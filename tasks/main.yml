@@ -9,14 +9,14 @@
   copy:
     src: awx_id_rsa.pub
     dest: "~{{ awx_user }}/.ssh/authorized_keys"
-    user: "{{ awx_user }}"
+    owner: "{{ awx_user }}"
     group: "{{ awx_group }}"
-    mode: "0600"
+    mode: "0644"
 
 - name: Configure AWX user for SUDO access
   template:
     src: "awx.sudoers.d.j2"
     dest: "/etc/sudoers.d/awx"
-    user: "root"
+    owner: "root"
     group: "{{ awx_group }}"
     mode: "0640"
